@@ -1,0 +1,49 @@
+.backFixed{
+	position: fixed;
+	width: 100%;
+	background-color: #F7F7F7;
+	
+	top:0;
+	left:0;
+} 
+.backFixed i{
+	top:50%;
+	left:50%;
+	font-size:30px;
+	margin: -15px 0 0 -15px;
+	color:#682FFA;
+}
+
+.rotateRefresh
+{  animation:rotateRefresh 1s forwards infinite linear;
+   -webkit-animation:rotateRefresh 1s forwards infinite linear;
+}
+@keyframes rotateRefresh
+{   0  {transform:rotate(0deg)}
+    100% {  transform:rotate(359deg);  } }
+@-webkit-keyframes rotateRefresh
+{   0  {@-webkit-transform:rotate(0deg)}
+    100% {@-webkit-transform:rotate(359deg);  } }
+@-o-keyframes
+{   0  {@-o-transform:rotate(0deg)}
+    100% {@-o-transform:rotate(359deg);  } }
+    
+/*z-index*/
+#poster{z-index: 0} 
+.paging{z-index: 10}
+.backFixed{z-index: 13}
+
+#head{z-index: 14}
+#head nav{z-index:15}
+
+#details{z-index:17}
+#details .ad{z-index: 18} 
+.backFixed.commentBg{z-index: 19} 
+#details .navDetails{z-index: 20}
+#details .navDetails nav{z-index: 21}
+
+
+.explore{z-index: 30}
+
+.comment{z-index: 100;}
+.navComment{z-index: 101} .navBar{z-index: 101}

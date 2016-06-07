@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
+	<script type="text/javascript" src="../js/lib/jquery-1.12.4.min.js"></script>
+	
+	<script type="text/javascript">
+			$(function(){
+				//设置背景图片的高度：安卓chrome下部有留白；
+				var body = $('body');
+				$('body').css({
+					
+					'background-size':'100% '+$(window).height()+'px'
+				});
+				//登录
+				$("#logIn").click(function(event) {
+					location.href='loginPage.html'
+				});
+				//注册
+				$("#signUp").click(function(event) {
+						location.href='signUp.html'
+							
+
+				});
+				
+			})
+		</script>
+	<style type="text/css">
+		body{
+			background:no-repeat url('bg.png') ;
+	/*		background-size: 100% ;*/
+			background-size: cover;
+			padding:1em;
+
+		}
+	</style>
+</head>
+<body>
+		<h1 >你好</h1>
+		<h2 >欢迎来到预告者</h2>
+		
+			
+			
+				<div class="col-xs-12" style='position: fixed;left:0;right:0; bottom: 2.5em;margin-bottom: 0;'>
+					
+					<button id="signUp" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-film"></span> 注册</button>
+					<button id="logIn" class="btn btn-info btn-lg pull-right"><span class="glyphicon glyphicon-menu-right"></span> 登录</button>
+								
+				</div>
+			
+		
+		
+</body>
+</html>

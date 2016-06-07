@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
+	<script type="text/javascript" src="../js/lib/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/login/logIn.js"></script>
+	<title></title>
+	<style type="text/css">
+		#loginForm{
+			margin-top: 1.5em;
+
+		}
+
+		#loginForm .form-group{
+			border-bottom:1px solid #B1B0B0;
+	
+		}
+		
+
+		#loginForm label{
+			color:#C1C5C8;
+			font-size: 1.2em;
+		}
+		#loginForm input{
+			
+			border:0px;
+			
+			box-shadow: none;
+			padding:0 0;
+		}
+		#showPass{
+			border:0;
+			background-color: transparent;
+			color:#C1C5C8;
+			padding-right: 0;
+			font-size: 1.5em;
+		}
+		#bottomBar{
+			position: relative;
+			border-top:1px solid #C1C5C8;padding: 10px 15px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container" >
+		<div class="row" style="padding-top:10px ;">
+			<div class="col-xs-8 col-xs-push-2 " style="text-align: center;">
+				
+					<span class="glyphicon glyphicon-film" style="font-size:2.5em;color:#55ACEE"></span>
+			</div>
+			<!--如贵设置col-xs-2,还要设置从col-xs-push-2偏移-->
+			<div  style="text-align: right;">					
+					<button id = "signUp" class="btn btn-link btn-lg " style="text-decoration:none;color:#55ACEE;font-weight: bold">注册</button>
+			</div>				
+				
+
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 >登录 YGZ。</h1>
+			</div>
+		</div>
+		<div id="loginForm" class="row" >
+			<div class="col-xs-12">
+					  <div class="form-group" >
+						    <label for="userName">用户名</label>
+						    <input class="form-control" type="text" id="userName" required='required'>
+					  </div>
+					  <div class="form-group" >
+							<label for="passWord">密码</label>
+							<div class="input-group">
+									<input id="passWord" type="password" class="form-control" required='required'>
+									<span id="showPass" class="input-group-addon glyphicon glyphicon-eye-close"></span>   
+							</div>
+					  </div>
+				
+			</div>
+		</div>
+
+		<div class="row" >
+			<div id="bottomBar" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+				<button class="btn btn-link btn-lg " style="text-decoration:none;color:#8B8B8B;font-weight: bold;padding-left: 0;">忘记密码?</button>
+				<button id="logIn" type="submit" class="btn btn-info btn-lg pull-right">登录</button>
+			</div>
+		</div>
+		
+	</div>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$('#loginForm :input')
+		.on('focus',function(){
+			//$('#bottomBar').hide();
+
+			$(this).parents('.form-group').css({
+				'border-bottom-color':'#66afe9'
+			})
+		})
+		.blur(function(){
+			/*setTimeout($('#bottomBar').css({
+				'display':'block'
+				}),5000);*/
+			//$('#bottomBar').show('slow');   //避免软键盘还没收起来闪现；但是按返回键时没触发blur还是隐藏的
+			$(this).parents('.form-group').css({
+				'border-bottom-color':'#B1B0B0'
+			})
+		});
+		$('#bottomBar').css({
+				'top':$(window).height()-$('.container').height()
+			});
+		//密码是否可见“eye”图标
+		$('#showPass').click(function() {
+			$(this).toggleClass('glyphicon-eye-close glyphicon-eye-open');
+			var type=$('#passWord').attr('type');
+			type=='password'?
+			$('#passWord').attr('type','text'):
+			$('#passWord').attr('type','password');
+		});
+		$("#signUp").click(function(){location.href = "signUp.html"})
+		$('#logIn').click(function(){
+			var userName = $('#userName').val(),
+				passWord = $('#passWord').val();
+				if(userName != "" && passWord !="")
+			var data = {
+		            action:'logIn',
+		            userName:userName,
+		            passWord:passWord
+		                    	};
+			$.when(logIn(data))
+			 .done(function(json){
+			 	
+		                 	if(json.logInState[0].state=='in'){
+		                    		location.href='../index.html'
+		                   	}
+		                    
+			 })
+		})
+	});
+		
+</script>	
+</body>
+</html>

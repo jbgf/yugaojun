@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="../style/bootstrap.css">
+	<script type="text/javascript" src="../js/lib/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/login/reg.js"></script>
+	<script type="text/javascript">
+			$(function(){
+				//设置背景图片的高度：安卓chrome下部有留白；
+				var windowHeight = $(window).height();
+				var body = $('body');
+				var signUp = $('.signUp');
+				
+
+				body.css({
+					
+					'background-size':'100% '+$(window).height()+'px'
+				});
+				
+				var userName = $(".userName");
+				userName.append('<div ><i class="iconFont">&#xe600;</i></div>'
+								+'<div class="borderBottom"><input placeholder="username"/></div>');
+				var passWord = $(".passWord");
+				passWord.append('<div ><i class="iconFont">&#xe602;</i></div>'
+								+'<div class="borderBottom"><input  placeholder="password"/></div>');
+				var email = $(".email");
+				email.append('<div ><i class="iconFont">&#xe601;</i></div>'
+								+'<div class="borderBottom"><input placeholder="email"/></div>');
+				
+				var button = $(".button");
+				button.html('注册');
+
+				signUp.Reg();
+
+				var signUpHeight = signUp.height();
+				signUp.css({"margin-top":(windowHeight-signUpHeight)/2+'px'});
+
+
+				
+			})
+	</script>
+	<style>
+				@font-face {
+				  font-family: 'iconfont';
+				  src: url('http://at.alicdn.com/t/font_1464793333_7898958.eot'); /* IE9*/
+				  src: url('http://at.alicdn.com/t/font_1464793333_7898958.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+				  url('http://at.alicdn.com/t/font_1464793333_7898958.woff') format('woff'), /* chrome、firefox */
+				  url('http://at.alicdn.com/t/font_1464793333_7898958.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+				  url('http://at.alicdn.com/t/font_1464793333_7898958.svg#iconfont') format('svg'); /* iOS 4.1- */
+				}
+				input{outline: 0}                    
+				                    
+                    
+                .iconFont{font-family:"iconfont";font-style:normal;color:#fff;}    
+				body{
+					color:#fff;
+					background:no-repeat url('20140808193846.jpeg') ;
+			/*		background-size: 100% ;*/
+					background-size: cover;
+					padding: 0;
+					background-color: transparent;
+
+				}
+				input{background-color: transparent;border:none;width:100%;height: 100%}
+				.signUp{width:80%;margin-left: auto;margin-right: auto;}
+				.signUp>div{margin-bottom: 1em;}
+				.signUp>div>div{display:inline-block;position: relative;line-height: 1;font-size: 1.5em;padding-bottom: .5em;height:2em;}
+				.signUp>div>div:last-child{font-size: 1em}
+				.signUp>div:not(:last-child)>div:first-child{width:15%;}
+				.signUp>div:not(:last-child)>div:last-child{width:85%;}
+/*按钮*/				.signUp>.button{
+					display: block;text-align: center;
+					border:1px solid ;border-radius: 1.5em;
+					font-size: 18px;
+					padding: .5em;
+
+				}
+				.borderBottom{border-bottom: 1px solid;}
+				.toolTip{
+					   position: absolute;top:50%;left:50%;background-color: #504F4F;color:#fff;border-radius: 1.5em;
+						
+					
+				}
+				.signUp .circleProgress_wrapper{
+				  width: 30px;
+				  height: 30px;
+				  margin: 0 auto;
+				  position:relative;
+				 padding: 0px;
+				
+				}
+				.wrapper{
+				  width: 50%;
+				  height: 100%;
+				  position: absolute;
+				  top:0;
+				  overflow: hidden;
+				}
+				.right{
+				  right:0;
+				}
+				.left{
+				  left:0;
+				}
+				.circleProgress{
+				  width: 200%;
+				  height: 100%;
+				  border:3px solid transparent;
+				  border-radius: 50%;
+				  position: absolute;
+				  top:0;
+				  transform: rotate(-135deg);
+				}
+				.rightcircle{
+				  border-top:3px solid white;
+				  border-right:3px solid white;
+				  right:0;
+				  animation: circleProgressLoad_right 1s linear 1 forwards;
+				}
+				.leftcircle{
+				  border-bottom:3px solid white;
+				  border-left:3px solid white;
+				  left:0;
+				  animation: circleProgressLoad_left 1s linear 1 forwards;
+				}
+				@keyframes circleProgressLoad_right{
+				  0%{
+				   
+				    transform: rotate(-135deg);
+				  }
+				  50%{
+				   
+				    transform: rotate(45deg);
+				  }
+				  100%{
+				   
+				    transform: rotate(45deg);
+				  }
+				}
+				@keyframes circleProgressLoad_left{
+				  0%{
+				   
+				    transform: rotate(-135deg);
+				  }
+				  50%{
+				  
+				    transform: rotate(-135deg);
+				  }
+				  100%{
+				   
+				    transform: rotate(45deg);
+				  }
+				}		
+	</style>
+</head>
+<body>
+							<div class="signUp">
+								<div class="userName"></div>
+								<div class="passWord"></div>
+								<div class="email"></div>
+								<div class="button"></div>
+
+							</div>
+</body>
+</html>

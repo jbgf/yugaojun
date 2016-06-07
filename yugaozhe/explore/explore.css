@@ -1,0 +1,128 @@
+.explore{background-color:#252525;padding:5px;position: absolute;top:0;left:0;};
+.floatRight{
+	float:right!important;
+}
+div[class*="block"]:not(.frame){
+	padding:4px;
+}
+div[class*="block"]{
+	
+	display: block;
+	float:left;
+}
+div[class*="column"],div[class*="row"]{
+	float:left;
+	display: block;
+	position: relative;
+
+}
+
+.windowsTile{
+	
+	overflow: hidden;
+	position: relative;
+	float:left;
+	width:100%;
+	height: 100%;
+/*	width: 120px;
+	height:120px;
+	margin:10px;*/
+	
+	
+}
+.windowsTile .windowsTile-content{display: none;}
+.windowsTile .windowsTile-content:first-child{display: block;}
+.windowsTile .windowsTile-content{
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	left:0;
+	top:0;
+	overflow: hidden;
+}
+.windowsTile-content.icon [class*="icon-"],
+.windowsTile-content.icon [class*="glyphicon-"],
+.windowsTile-content.icon img{
+		line-height: 28px;
+		height: 28px;
+		width:28px;
+		font-size: 28px;
+		color:#ffffff;
+		text-align: center;
+		position: absolute;
+		left:50%;
+		top:50%;
+		margin-top: -14px;
+		margin-left: -14px;
+}
+.windowsTile .brand{
+	position: absolute;
+	bottom: 0;
+	left:0;
+	right:0;
+	min-height: 29px;
+	margin: 0;
+}
+.windowsTile .windowsTile-content img{
+	width: 100%;
+	height: 100%;
+}
+.windowsTile .brand.opacity{opacity: .7}
+.windowsTile .brand:before,
+.windowsTile .brand:after{display: table;content:"";}
+.windowsTile .brand:after{clear:both;}
+
+.windowsTile .brand .label,
+.windowsTile .brand .text{
+	float: left;
+	display: block;
+	font-size: 10pt;
+	margin:5px 20px 2px 5px;
+	background: transparent;
+	color:#ffffff;
+}
+.windowsTile .brand .text{
+	margin:4px 5px;
+	font-size: 8pt;
+	line-height: 10pt;
+}
+.windowsTile .brand .badge{
+	position: absolute;
+	bottom: 0;
+	right: 10px;
+	width: 29px;
+	height: 29px;
+	text-align: center;
+	color: #ffffff;
+	padding:8px;
+	margin: 0;
+	vertical-align: middle !important;
+	display: block;
+	font-size: 10pt;
+	border-radius: 0px;
+}
+
+.lightOrange{
+	background-color: #f4b300;
+}
+.orange{
+	background-color: #ff7d23;
+}
+.green{
+	background-color: #199900;
+}
+.purple{
+	background-color: #e064b7;
+}
+.yellow{
+	background-color: #e1b700;
+}
+/*最后一行*/
+.explore>div[class*="row"]:last-child{
+	padding:4px;
+}
+.explore>div[class*="row"]:last-child div[class*="block"]{
+	padding:0;
+}
