@@ -1,0 +1,28 @@
+.paging{
+			position: fixed;bottom: 0;
+			
+		}
+.paging>div{ 
+		    
+		    display:inline-block;
+			text-align:center;
+			line-height: 1;
+			width:22px;
+			height:22px;
+			font-size: 13px;
+			border-radius:13px;
+			margin-right: 8px;
+			color:#A1A0A0;
+			background-color:#D6D4D4;	
+}
+
+.paging>div.active{
+			background-color: #464646;
+			color:#D2CCCC;
+}
+.paging>div.ellipsis{
+			background-color: transparent;
+			color:white;
+			margin-left: -8px;
+			margin-right: 0px;
+}

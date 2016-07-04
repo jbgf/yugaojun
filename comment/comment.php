@@ -17,7 +17,7 @@ if ($_POST['action'] == 'getComment'){
     
     $articleId = $_POST['articleId'];
     
-    $query ="SELECT c.COMMENT,c.USER_ID,C.COMMENT_TIME,u.AVATAR_PATH,u.SIGN,u.USER_NAME FROM `comment` AS c,`user` AS u WHERE u.user_id = c.user_id AND ARTICLE_ID = $articleId;";
+    $query ="SELECT c.COMMENT,c.USER_ID,c.COMMENT_TIME,u.AVATAR_PATH,u.SIGN,u.USER_NAME FROM `comment` AS c,`user` AS u WHERE u.USER_ID = c.USER_ID AND c.ARTICLE_ID = '$articleId';";
     $result = db_connection($query);
 
     $comment = array();

@@ -5,6 +5,8 @@
 	
 	top:0;
 	left:0;
+	right:0;
+	bottom:0;
 } 
 .backFixed i{
 	top:50%;
@@ -47,3 +49,4 @@
 
 .comment{z-index: 100;}
 .navComment{z-index: 101} .navBar{z-index: 101}
+#sideBar{z-index:200}

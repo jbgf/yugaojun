@@ -48,9 +48,9 @@ define(function(){
               var that = this;
               if(module=="show"||!module){
                    $('.backFixed').remove();              
-                   $('body').append('<div class="backFixed" style="height:'+this.windowHeight+'px">'
-                                                                +'<i class="rotateRefresh glyphicon glyphicon-refresh"></i>'
-                                                           +'</div>');
+                   $('body').append('<div class="backFixed" >'
+                                          +'<i class="rotateRefresh glyphicon glyphicon-refresh"></i>'
+                                    +'</div>');
                    that.background = $('.backFixed');                                                            
               }
               if(module=="hide")$('.backFixed').fadeOut();

@@ -1,0 +1,41 @@
+#poster{
+	
+	position: relative;
+}
+.articleMask,.ui{
+	width:100%;position:absolute;top:0;padding:8px;
+
+}
+.articleMask{
+	height:100%;
+	cursor: pointer;
+}
+
+.ui span{
+	font-weight: bold;
+	font-size:20px;
+	color:#fff;
+	line-height: 35px;
+}
+.ui .heart{
+	font-size: 35px;
+	color:#fff;
+	float:right;
+}
+.ui .red{
+	color:red;
+}
+/*收藏按钮跳动效果*/
+.heartBeat
+{  animation:beat 0.2s forwards ease-in;}
+@keyframes beat
+{   50%  {transform:scale(1.3,1.3)}
+    100% {  transform:scale(1,1);  } }
+    
+
+#poster>div img{
+	width:100%;
+	height:100%;
+	
+
+}

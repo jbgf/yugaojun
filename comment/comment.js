@@ -17,7 +17,7 @@ define(["common"],function(common){
 
 	};
 	comment.prototype.unset = function(){
-		common.backFixed("hide");$(".backFixed").removeClass('commentBg');
+		/*common.backFixed("hide");*/$(".backFixed").removeClass('commentBg');
 		$(".comment").remove();
 		$('#details').css({"position":"absolute"})
         

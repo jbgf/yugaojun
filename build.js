@@ -1,14 +1,18 @@
 ({
-    
+    /*node r.js -o build.js*/
     baseUrl: 'js/lib',
-    dir: 'dest',
-    modules: [
+    out:'dist/min.js',
+    name:"main",
+   /*合并的同时压缩baseurl的每个文件，输出到dir*/
+   /* dir: 'dest',*/
+   /*modules: [         
         {
-            name: 'main_origin'
+            name: 'main'
         }
-    ],
-   
-    optimizeCss: 'standard',
+    ],*/
+    /*node r.js -o cssIn=config.css out=dist/min.css optimizeCss=standard*/
+    
+    optimizeCss: 'standard', /*标准压缩 去换行、空格、注释*/
     removeCombined: false,
     optimize: "uglify",
     findNestedDependencies: true,

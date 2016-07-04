@@ -9,7 +9,7 @@ requirejs.config({
     paths: {
         'jquery'  : 'jquery-1.12.4.min',
         'bootstrap':'bootstrap',
-        'first':'../../dist/first',
+        'min':'../../dist/min',
  
     }, 
     map: {
@@ -23,12 +23,12 @@ requirejs.config({
                 'css!../../style/bootstrap.css'
             ]
         },
-        first:{
+        min:{
             deps:[
                 'jquery',
                 'bootstrap',
                 'css!../../explore/font-awesome.css',
-                'css!../../dist/first.css'
+                'css!../../dist/min.css'
             ]
         }
          
@@ -43,7 +43,7 @@ requirejs.config({
 });
 
 
-requirejs(['first'],function(first){
+requirejs(['min'],function(min){
         
         
 });

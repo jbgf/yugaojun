@@ -11,7 +11,7 @@ $root=$_SERVER['DOCUMENT_ROOT'];          //$root=$_SERVER['DOCUMENT_ROOT']为F:
 
 function db_connection($query){
     $mysqli = new mysqli('127.0.0.1', 'jbgf', 'jbgfw1220w','yugaozhe');
-	/* $mysqli = new mysqli('qdm191148621.my3w.com','qdm191148621','jbgfw1220w','qdm191148621_db');*/
+	 /*$mysqli = new mysqli('qdm191148621.my3w.com','qdm191148621','jbgfw1220w','qdm191148621_db');*/
     $mysqli->query("SET NAMES utf8");           //防止中文乱码；
     
     if ($mysqli->multi_query($query)){
