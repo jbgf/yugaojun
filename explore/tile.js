@@ -15,9 +15,8 @@
 		if (this.options.period == undefined){this.options.period == Tile.DEFAULTS.period}
 		if (this.options.duration == undefined){this.options.duration == Tile.DEFAULTS.duration};
 		if (this.options.easing == undefined){this.options.easing == Tile.DEFAULTS.easing;}
-//easing插件
+//easing插件不必全引入，自定义规定的效果就好
 		$.easing.doubleSqrt = function (t){return Math.sqrt(Math.sqrt(t));}
-
 	};
 
 	Tile.DEFAULTS = {
