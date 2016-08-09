@@ -1,14 +1,9 @@
+/*npm install gulp browser-sync gulp-connect-php run-sequence --save-dev;*/
 var gulp=require('gulp'),
-	sass=require('gulp-sass'),
+	
 	browserSync=require('browser-sync'),
-	useref=require('gulp-useref'),
-	gulpif=require('gulp-if'),
-	minifyCSS = require('gulp-minify-css'),
-	uglify=require('gulp-uglify'),
-	imagemin=require('gulp-imagemin'),
-	imageminMozjpeg=require('imagemin-mozjpeg'),
-	cache=require('gulp-cache'),
-	del = require('del'),
+	
+	
 	connect = require('gulp-connect-php'),
 	runSequence = require('run-sequence');
 
@@ -22,9 +17,9 @@ gulp.task('fonts',function(){                              //不使用插件的�
 
 gulp.task('sass',function(){
 	return gulp.src('source/**/*.scss')
-				.pipe(sass())
-				.pipe(gulp.dest('dest'))
-				.pipe(browserSync.reload({
+			   .pipe(sass())
+			   .pipe(gulp.dest('dest'))
+			   .pipe(browserSync.reload({
 					stream:true
 				}))
 });
@@ -37,7 +32,7 @@ gulp.task('build',function(callback){
 
 /*开发线路*/
 gulp.task('default',function(callback){
-	runSequence(['sass','browserSync','watch'],
+	runSequence(['browserSync','watch'],
 		callback)
 })
 gulp.task('browserSync',function(){
@@ -46,8 +41,8 @@ gulp.task('browserSync',function(){
 		proxy: "localhost:8001"			//处理php文件，gulp-connect-php默认监听8000，直接设置port：8000会发生占用，启用8001；
 	})
 });
-gulp.task('watch',['browserSync','sass','connectPhp'],function(){
-	 gulp.watch('source/**/*.scss',['sass']);
+gulp.task('watch',['browserSync','connectPhp'],function(){
+	
 	 gulp.watch(['login/*.html','login/*.js'],browserSync.reload);
 	 gulp.watch(['head/*.js','head/*.css'],browserSync.reload);
 	 gulp.watch(['sideBar/*.js','sideBar/*.css'],browserSync.reload);
@@ -97,8 +92,8 @@ gulp.task('clean:dest',function(callback){
 
 gulp.task('connectPhp',function(){
 	connect.server({
-		bin:'F:/xampp/php/php.exe',
-		ini: 'F:/xampp/php/php.ini',
+		bin:'D:/xampp/php/php.exe',
+		ini: 'D:/xampp/php/php.ini',
 		port:8001
   	});
   	gulp.watch('./*.php').on('change', function () {

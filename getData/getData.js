@@ -21,9 +21,9 @@ define("getData",function(){
         var serverPath = path?path:'/login/login.php';
         return $.ajax({
 				      	url: serverPath,
-				      	type: 'POST',
-				      	dataType: 'json',
-				      	data: {action: 'checkLogIn'}
+				      	method: "POST",
+				      	dataType:"json",
+				      	data: {"action":'checkLogIn'}
 				      	
 				      }); 
         		
@@ -32,7 +32,7 @@ define("getData",function(){
         getData.prototype.getActorData = function(){
 		        return $.ajax({
 						      	url: '../explore/explore.php',
-						      	type: 'POST',
+						      	method: "POST",
 						      	dataType: 'json',
 						      	data: {
 						      			action: 'getActorData'
@@ -46,7 +46,7 @@ define("getData",function(){
         		var serverPath = path;
 		        return $.ajax({
 						      	url: serverPath,
-						      	type: 'POST',
+						      	method: "POST",
 						      	dataType: 'json',
 						      	data: data
 						      }); 

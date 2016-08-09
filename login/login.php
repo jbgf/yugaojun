@@ -6,17 +6,16 @@ require ("../etc/configuration.php");		//连接数据库；
 session_start() ; 
 
 function cookie_session($key,$value,$time){
-	for ($i=0; $i <count($key); $i++) {
+	for ($i=0; $i < count($key); $i++) {
 		$key_name = $key[$i]; 
 		setcookie($key_name, $value[$key_name], $time);
 		$_SESSION[$key_name]=$value[$key_name];
 	};
-	
-
 };
 
-if ($_POST['action']=='logIn'){
-		$userName =htmlspecialchars($_POST['userName']);
+if ($_POST['action'] == 'logIn'){
+
+		$userName = htmlspecialchars($_POST['userName']);
 		$passWord = htmlspecialchars($_POST['passWord']);
 		$user = array();
 		$like = array();
@@ -44,10 +43,10 @@ if ($_POST['action']=='logIn'){
 		echo json_encode(array("logInState" => $logInState));
     exit; 
 };
-
+	
 //检查是否处于登录状态；	
-if($_POST['action']=='checkLogIn'){
-
+if(isset($_POST["action"]) && $_POST["action"] =="checkLogIn"){
+	 
 	 $logInf = array();
 
 	 if(isset($_SESSION['userId'])){
@@ -72,7 +71,7 @@ if($_POST['action']=='checkLogIn'){
 	 		}
 	 }
 };
-if($_POST['action']=='logOut'){
+if(isset($_POST['action']) && $_POST['action']=='logOut'){
 	session_destroy();
 	setcookie('userId',"");
 	echo json_encode(array("logInf" => "out"));

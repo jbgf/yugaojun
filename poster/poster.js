@@ -17,6 +17,7 @@
                       var that = this;
                       $.when(getData.getUserData())
                                     .done(function(data) {
+                                     
                                         getData.userData = data.logInf;
                                         
                                         var userInf = data.logInf;
@@ -88,6 +89,7 @@
                    this.currentPage = currentPage;
                    this.posterNum = posterNum;
                    common.backFixed();
+
                    head.isBigScreen?this.bigScreenPoster():this.smallScreenPoster();
                  
             };

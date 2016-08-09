@@ -5,7 +5,6 @@
             details.prototype.ini = function(){
                 var that = this;
                 
-                
                 function build(){
                     //文档高度就是第一页面的高度？poster
                     
@@ -160,7 +159,7 @@
 /*决定位置的点*/                    
                     if(state == "out" && scrollHeight>changeHeight/2)
                     {
-                                  moveDiv.animate(
+                                  moveDiv.stop(false,true).animate(
                                   {
                                         "top":'-='+headHeight+'px',
                                   },
@@ -178,7 +177,7 @@
                     else if(state == "in" && scrollHeight < changeHeight/2)
                     {
                               
-                              moveDiv.animate({
+                              moveDiv.stop(false,true).animate({
                                       "top":'-='+headHeight+'px'
                               },
                               {

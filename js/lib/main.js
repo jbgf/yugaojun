@@ -4,7 +4,7 @@
 
 requirejs.config({
 
-    baseUrl: '/js/lib',
+    baseUrl: './js/lib',
 
     paths: {
         'jquery'  : 'jquery-1.12.4.min',
