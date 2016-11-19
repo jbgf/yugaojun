@@ -14,9 +14,7 @@ requirejs.config({
         'likePage': '../../html/likePage/likePage'
     }, 
     map: {
-        '*': {
-        'css': 'css'
-             }
+        '*': {'css': 'css'}
          },
     shim: {
         bootstrap:{

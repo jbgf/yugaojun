@@ -23,6 +23,10 @@ define(["jquery","getData","common"],function($,getData,common){
 			 });
 
 		};
+		/*多图片的页面加载处理*/
+		likePage.prototype.imgLoad = function(){
+
+		}
 		likePage.prototype.build = function(pageData){
 				var body = $("body");
 				var avatarPath = pageData.avatarPath;
@@ -38,21 +42,28 @@ define(["jquery","getData","common"],function($,getData,common){
 				sign.appendTo(body);
 
 				var likeZone = $("<div class='likeZone'></div>");
-				likeZone.appendTo(body);
-				var trailerWidth = likeZone.width()/5;
 				
+				//var trailerWidth = likeZone.width()/5;
+				var numLoaded = 0;
 				$.each(pageData.likePage,function(index,value){
-					var likeArticle = $("<div class='likeArticle'><img></div>");
-					likeArticle.appendTo(likeZone)
-					   .css({
-					   		width:'20%',
-					   		height:trailerWidth,
-					   		
-					   })
-					   .children('img')	
-					   .attr({src:'/'+value.trailerPath});
+					var likeArticle = $("<div class='likeArticle'><img class='img-center' src=/"+value.trailerPath+"></div>");
+					likeArticle.find("img").load(function(){
+						likeArticle.appendTo(likeZone)
+								   
+						numLoaded++;		   
 
-				}) 
+					});  
+
+				});
+
+				(function(){
+					if(numLoaded == pageData.likePage.length){
+						likeZone.appendTo(body);
+						return;	
+					}
+					setTimeout(arguments.callee, 17)
+				})()
+				
 		}
 		likePageNew = new likePage;
 		likePageNew.ini();

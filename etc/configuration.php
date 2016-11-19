@@ -5,7 +5,8 @@
  * Date: 2016/2/16
  * Time: 15:57
  */
-$root=$_SERVER['DOCUMENT_ROOT'];          //$root=$_SERVER['DOCUMENT_ROOT']为F:\xampp\htdocs
+$root=$_SERVER['DOCUMENT_ROOT'];          
+//$root=$_SERVER['DOCUMENT_ROOT']为F:\xampp\htdocs
 /*$root="http://localhost/yugaozhe/";*/                //move_uploaded_file  移动到该url,会有警告；
 //连接数据库函数，并查询；
 
