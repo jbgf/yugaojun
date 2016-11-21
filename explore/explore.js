@@ -61,7 +61,6 @@ define(["getData","common"],function(getData,common){
 											+'</div>'*/
 								+'</div>'
 						 +'</div>';
-		
 			
 		rowColumn(3,[1,2,2],'.explore','h');
 
@@ -74,7 +73,8 @@ define(["getData","common"],function(getData,common){
 		rowColumn(2,[2,2],'.exploreCatagrory','h');
 			
 //第3行
-		var exit = $('.row2 .block1');exit.addClass('exit');
+		var exit = $('.row2 .block1');
+		exit.addClass('exit');
 		var character = $('.row2 .block0');character.addClass('character');
 		rowColumn(2,[1,2],'.character','v');
 		//	rowColumn(2,[2,1],'.exit','v');

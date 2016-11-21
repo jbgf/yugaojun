@@ -25,10 +25,7 @@ require ("../etc/configuration.php");		//连接数据库；
     
     while($row = mysqli_fetch_array($result[0],MYSQLI_ASSOC)){  
 	    //登录成功
-
 	    array_push($actor, array('avatar' => $row['ACTOR_AVATAR']));  
-
-	     
     }
     echo json_encode($actor);
     exit; 
