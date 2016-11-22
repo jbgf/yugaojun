@@ -13,7 +13,7 @@
         }
 
         //1. 数据库形式
-        /*
+        
         DROP TABLE IF EXISTS `wx_token`;
         CREATE TABLE IF NOT EXISTS `wx_token` (
           `id` int(1) NOT NULL,
@@ -26,7 +26,7 @@
         INSERT INTO `wx_token` (`id`, `type`, `expire`, `value`) VALUES
         (1, 'access_token', '1425534992', 't3oyW9fRnOWKQHQhZXoEH-pgThhjmnCqTVpaLyUD'),
         (2, 'jsapi_ticket', '', '');
-        */
+        
         $con = mysql_connect(MYSQLHOST.':'.MYSQLPORT, MYSQLUSER, MYSQLPASSWORD);
         mysql_select_db(MYSQLDATABASE, $con);
         $result = mysql_query("SELECT * FROM `wx_token` WHERE `type` = 'access_token'");
