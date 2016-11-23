@@ -1,14 +1,24 @@
 <?php
 require ("../etc/configuration.php");
 require ("wechat_etc.php");
-$query = "SELECT * FROM `wx_token` WHERE `type` = 'access_token'";
-$result = db_connection($query);
-if($result == NULL){
-    
-};
+
+
     class class_token
 {
 
+    public function ini_token(){
+        $query = "SELECT * FROM `wx_token` WHERE `type` = 'access_token'";
+        $result = db_connection($query);
+        while($row = mysql_fetch_array($result))
+        {
+            $this->expires_time = $row['expire'];
+            break;
+        }
+        if($result == NULL || time() > ($this->expires_time + 3600)){
+            $this -> remote_token();
+        };
+    }
+    
     //构造函数，获取Access Token
     public function db_token($appid = NULL, $appsecret = NULL)
     {
@@ -72,7 +82,6 @@ if($result == NULL){
     }
     
     public function local_token(){
-
 
         //3. 本地写入
         $res = file_get_contents('access_token.json');
