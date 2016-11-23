@@ -9,56 +9,56 @@ require ("wechat_etc.php");
     public function ini_token(){
         $query = "SELECT * FROM `wx_token` WHERE `type` = 'access_token'";
         $result = db_connection($query);
+        if($result == NULL){
+            $this -> remote_token();
+            $this->db_token();
+            return;
+        };
         while($row = mysql_fetch_array($result))
         {
             $this->expires_time = $row['expire'];
+            $this->access_token = $row['value'];
             break;
-        }
-        if($result == NULL || time() > ($this->expires_time + 3600)){
+        };
+        if( time() > ($this->expires_time + 3600)){
             $this -> remote_token();
+            $this-> db_token();
+        }else{
+            return $this->access_token;
         };
     }
-    
+    public function https_request($url,$data = null){
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+        if (!empty($data)){
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        }
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($curl);
+        curl_close($curl);
+        return $output;
+    }
+
     //构造函数，获取Access Token
     public function db_token($appid = NULL, $appsecret = NULL)
     {
-        if($appid && $appsecret){
-            $this->appid = $appid;
-            $this->appsecret = $appsecret;
-        }
-
-        //1. 数据库形式
         
-        /*DROP TABLE IF EXISTS `wx_token`;
-        CREATE TABLE IF NOT EXISTS `wx_token` (
-          `id` int(1) NOT NULL,
-          `type` varchar(20) NOT NULL,
-          `expire` varchar(16) NOT NULL,
-          `value` varchar(600) NOT NULL,
-          PRIMARY KEY (`id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-        INSERT INTO `wx_token` (`id`, `type`, `expire`, `value`) VALUES
-        (1, 'access_token', '1425534992', 't3oyW9fRnOWKQHQhZXoEH-pgThhjmnCqTVpaLyUD'),
-        (2, 'jsapi_ticket', '', '');*/
+        $query = "DROP TABLE IF EXISTS `wx_token`".
+            "CREATE TABLE IF NOT EXISTS `wx_token` (
+              `id` int(1) NOT NULL,
+              `type` varchar(20) NOT NULL,
+              `expire` varchar(16) NOT NULL,
+              `value` varchar(600) NOT NULL,
+              PRIMARY KEY (`id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;".
+            "INSERT INTO `wx_token` (`id`, `type`, `expire`, `value`) VALUES
+            (1, 'access_token', "$this->expires_time", "$this->access_token"),
+            (2, 'jsapi_ticket', '', '')";
+            db_connection($query);
         
-        $con = mysql_connect(MYSQLHOST.':'.MYSQLPORT, MYSQLUSER, MYSQLPASSWORD);
-        mysql_select_db(MYSQLDATABASE, $con);
-        $result = mysql_query("SELECT * FROM `wx_token` WHERE `type` = 'access_token'");
-        while($row = mysql_fetch_array($result))
-        {
-            $this->access_token = $row['value'];
-            $this->expires_time = $row['expire'];
-            break;
-        }
-        if (time() > ($this->expires_time + 3600)){
-            $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appid."&secret=".$this->appsecret;
-            $res = $this->http_request($url);
-            $result = json_decode($res, true);
-            $this->access_token = $result["access_token"];
-            $this->expires_time = time();
-            mysql_query("UPDATE `wx_token` SET `expire` = '$this->expires_time', `value` = '$this->access_token' WHERE `type` = 'access_token';");
-        }
     }
      
     public function cache_token(){
@@ -102,7 +102,7 @@ require ("wechat_etc.php");
     public function remote_token(){    
         //4. 实时拉取
         $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appid."&secret=".$this->appsecret;
-        $res = $this->http_request($url);
+        $res = $this->https_request($url);
         $result = json_decode($res, true);
         $this->access_token = $result["access_token"];
         $this->expires_time = time();
