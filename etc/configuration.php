@@ -9,9 +9,7 @@ $root=$_SERVER['DOCUMENT_ROOT'];
 //$root=$_SERVER['DOCUMENT_ROOT']为F:\xampp\htdocs
 /*$root="http://localhost/yugaozhe/";*/                //move_uploaded_file  移动到该url,会有警告；
 //连接数据库函数，并查询；
-
 /*$mysqli = new mysqli('qdm191148621.my3w.com','qdm191148621','jbgfw1220w','qdm191148621_db');*/
-
 
 function db_connection($query){
     $mysqli = new mysqli('127.0.0.1', 'jbgf', 'jbgfw1220w','yugaozhe');
@@ -33,7 +31,7 @@ function db_connection($query){
 	    return $array;
 	};
 
-}
+};
 
 
 ?>

@@ -1,16 +1,17 @@
 <?php
 require ("../etc/configuration.php");
-require ("wechat_etc.php");
-
+ $appid = "wxeb7c17340aebe6dc";
+$appsecret = "8b6ac5fc25df257a6384cf3630932f5a";  
 
     class class_token
 {
-
+    public $appid,$appsecret;
     public function ini_token(){
+
         $query = "SELECT * FROM `wx_token` WHERE `type` = 'access_token'";
         $result = db_connection($query);
         if($result == NULL){
-            $this -> remote_token();
+            $this->remote_token($appid,$appsecret);
             $this->db_token();
             return;
         };
@@ -21,8 +22,9 @@ require ("wechat_etc.php");
             break;
         };
         if( time() > ($this->expires_time + 3600)){
-            $this -> remote_token();
-            $this-> db_token();
+            $this->remote_token($appid,$appsecret);
+            $this->db_token();
+            return $this->access_token;
         }else{
             return $this->access_token;
         };
@@ -43,7 +45,7 @@ require ("wechat_etc.php");
     }
 
     //构造函数，获取Access Token
-    public function db_token($appid = NULL, $appsecret = NULL)
+    public function db_token()
     {
         
         $query = "DROP TABLE IF EXISTS `wx_token`".
@@ -55,7 +57,7 @@ require ("wechat_etc.php");
               PRIMARY KEY (`id`)
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8;".
             "INSERT INTO `wx_token` (`id`, `type`, `expire`, `value`) VALUES
-            (1, 'access_token', "$this->expires_time", "$this->access_token"),
+            (1, 'access_token', $this->expires_time, $this->access_token),
             (2, 'jsapi_ticket', '', '')";
             db_connection($query);
         
@@ -99,13 +101,17 @@ require ("wechat_etc.php");
         }
     }
     
-    public function remote_token(){    
-        //4. 实时拉取
+    public function remote_token($appid = NULL, $appsecret = NULL){    
+        if($appid && $appsecret){
+            $this->appid = $appid;
+            $this->appsecret = $appsecret;
+        }
         $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$this->appid."&secret=".$this->appsecret;
         $res = $this->https_request($url);
         $result = json_decode($res, true);
         $this->access_token = $result["access_token"];
         $this->expires_time = time();
+        return $this->access_token;
     }
 }    
 ?>

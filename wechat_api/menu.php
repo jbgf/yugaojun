@@ -9,14 +9,15 @@
 wx722e993eb7b1d17e
 3a14338b4e0b709a627a0b52f529f5b3*/
 
-require ("wechat_etc.php");
-
-$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
+require ("token.php");
+$token_class = new class_token();
+$access_token = $token_class->ini_token();
+/*$url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$appid."&secret=".$appsecret;
 
 $output = https_request($url);
 $jsoninfo = json_decode($output, true);
 
-$access_token = $jsoninfo["access_token"];
+$access_token = $jsoninfo["access_token"];*/
 
 $jsonmenu = '{
       "button":[
@@ -74,9 +75,8 @@ $jsonmenu = '{
        }]
  }';
 
-
 $url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$access_token;
-$result = https_request($url, $jsonmenu);
+$result = $token_class->https_request($url, $jsonmenu);
 var_dump($result);
 
 
