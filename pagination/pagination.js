@@ -5,8 +5,8 @@ define(["poster","getData"],function(poster,getData){
 
 	pagination.prototype.ini = function(){
 				var that = this;
-				var interval = setInterval(interval,500);
-				function interval(){
+				var interval = setInterval(inter,500);
+				function inter(){
 					
 					if(getData.userData){
 
