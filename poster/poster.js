@@ -1,8 +1,6 @@
     define("poster",["getData","common","head"],function(getData,common,head){
             
             var poster= function(){
-                
-                
                 this.test='test';
                 this.currentPage;        //当前页面；
                 this.posterNum;          //每页展示的电影poster数量；
@@ -17,13 +15,10 @@
                       var that = this;
                       $.when(getData.getUserData())
                                     .done(function(data) {
-                                     
                                         getData.userData = data.logInf;
-                                        
                                         var userInf = data.logInf;
                                         var articleData = {
                                                   action: 'getPoster',
-                                                 
                                                   currentPage:that.currentPage,
                                                   posterNum:that.posterNum
                                                 }; 
