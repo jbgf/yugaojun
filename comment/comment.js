@@ -52,6 +52,7 @@ define(["common"],function(common){
 
 		$(".comment .commentZone").remove();
 		$.each(data,function(){
+					console.log(this.commentTime)
 							var commentTime = that.getTime(this.commentTime);
 							var commentContent = '<div class="commentZone">'
 														+'<div class="commentLeft"><img src='+this.avatarPath+'></div>'

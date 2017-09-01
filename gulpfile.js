@@ -7,6 +7,8 @@ var gulp=require('gulp'),
 	connect = require('gulp-connect-php'),
 	runSequence = require('run-sequence');
 
+var port = 8090;
+
 gulp.task('test',function(){								
 	console.log('hello world!');							//直接在cmd界面显示；
 });
@@ -38,7 +40,7 @@ gulp.task('default',function(callback){
 gulp.task('browserSync',function(){
 	browserSync({
 
-		proxy: "localhost:8001"			//处理php文件，gulp-connect-php默认监听8000，直接设置port：8000会发生占用，启用8001；
+		proxy: "localhost:"+port+""			//处理php文件，gulp-connect-php默认监听8000，直接设置port：8000会发生占用，启用8001；
 	})
 });
 gulp.task('watch',['browserSync','connectPhp'],function(){
@@ -94,7 +96,7 @@ gulp.task('connectPhp',function(){
 	connect.server({
 		bin:'f:/xampp/php/php.exe',
 		ini: 'f:/xampp/php/php.ini',
-		port:8001
+		port:port
   	});
   	gulp.watch('./*.php').on('change', function () {
     browserSync.reload();
